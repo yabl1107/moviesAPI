@@ -7,6 +7,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.myself.moviesappapi.model.MovieList
+import com.myself.moviesappapi.model.singleGameModel
 import com.myself.moviesappapi.repository.MoviesRepository
 import com.myself.moviesappapi.state.MovieState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -60,7 +61,7 @@ class MoviesViewModel @Inject constructor(
     fun clean() {
         movieState = movieState.copy(
             isLoading = false,
-            movie = null,
+            movie = singleGameModel(),
             error = null
         )
     }

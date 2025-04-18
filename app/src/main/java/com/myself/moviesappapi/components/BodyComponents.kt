@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -30,7 +31,12 @@ import com.myself.moviesappapi.util.Constants.Companion.BASE_IMAGE
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyTopBar(title: String, showBackButton: Boolean, onClickBackButton: () -> Unit) {
+fun MyTopBar(
+    title: String,
+    showBackButton: Boolean = false,
+    onClickBackButton: () -> Unit = {},
+    showSearchButton: Boolean = false,
+    onClickSearchButton: () -> Unit = {}) {
     TopAppBar(
         title = { Text(title) },
         navigationIcon = {
@@ -39,6 +45,15 @@ fun MyTopBar(title: String, showBackButton: Boolean, onClickBackButton: () -> Un
                     onClick = onClickBackButton
                 ) {
                     Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                }
+            }
+        },
+        actions = {
+            if(showSearchButton) {
+                IconButton(
+                    onClick = { onClickSearchButton() }
+                ) {
+                    Icon(Icons.Filled.Search, contentDescription = "Search")
                 }
             }
         }
@@ -72,13 +87,18 @@ fun MovieCard(movie : MovieList, onClick: () -> Unit = {}) {
 }
 
 @Composable
-fun ImageCard(url : String) {
+fun ImageCard(url : String, modifier: Modifier = Modifier) {
     AsyncImage(
         model = url,
         contentDescription = null,
         contentScale = ContentScale.Crop,
-        placeholder = painterResource(R.drawable.ic_launcher_foreground),
-        modifier = Modifier
+        //placeholder = painterResource(R.drawable.ic_launcher_foreground),
+        modifier = modifier
             .clip(RoundedCornerShape(12.dp))
     )
+}
+
+@Composable
+fun Spacer(size : Int) {
+    Spacer(modifier = Modifier.padding(size.dp))
 }

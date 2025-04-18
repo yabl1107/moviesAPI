@@ -44,7 +44,11 @@ import com.myself.moviesappapi.viewModel.MoviesViewModel
 @Composable
 fun HomeView(viewModel: MoviesViewModel, navController: NavHostController) {
     Scaffold(
-        topBar = { MyTopBar(title = "Home View", showBackButton = false, {}) }
+        topBar = { MyTopBar(title = "TMDB API", showSearchButton = true,
+            onClickSearchButton = {
+                navController.navigate("SearchMovieView")
+            })
+        }
     ) {
         ContentHomeView(viewModel, it, navController)
     }

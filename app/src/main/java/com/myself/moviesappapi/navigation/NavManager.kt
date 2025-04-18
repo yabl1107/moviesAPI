@@ -9,6 +9,7 @@ import androidx.navigation.navArgument
 import com.myself.moviesappapi.viewModel.MoviesViewModel
 import com.myself.moviesappapi.views.DetailView
 import com.myself.moviesappapi.views.HomeView
+import com.myself.moviesappapi.views.SearchMovieView
 
 @Composable
 fun NavManager(viewModel : MoviesViewModel){
@@ -31,6 +32,9 @@ fun NavManager(viewModel : MoviesViewModel){
         ){
             val id = it.arguments?.getInt("movieId") ?: 0
             DetailView(navController, viewModel, id)
+        }
+        composable("SearchMovieView"){
+            SearchMovieView(viewModel,navController)
         }
     }
 }
