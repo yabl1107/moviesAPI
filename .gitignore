@@ -1,0 +1,75 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+
+# Directorios de compilación
+/build
+**/build/
+
+# Archivos generados por Android Studio
+*.iml
+.idea/
+.gradle/
+local.properties
+.DS_Store
+
+# Archivos de caché
+/.cxx/
+/.externalNativeBuild
+/.gradle/
+/captures/
+/output.json
+
+# Archivos de configuración personal
+*.log
+*.keystore
+*.jks
+*.swp
+
+# Archivos de entorno o locales
+.env
+/local
+
+# Archivos de sistema operativo
+Thumbs.db
+desktop.ini
+
+# Archivos de empaquetado
+*.apk
+*.ap_
+*.aab
+
+# Configuración de Gradle Wrapper
+gradle-wrapper.jar
+gradle-wrapper.properties
+
+# Ignorar las carpetas de Git temporales
+*.orig
+
+# Configuración específica de Kotlin
+.kotlinc/
+
+# Configuración específica del IDE
+.idea/caches
+.idea/libraries
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+
+# Archivos relacionados con crashlytics o analytics
+fabric.properties
+crashlytics-build.properties
