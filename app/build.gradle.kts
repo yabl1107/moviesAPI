@@ -82,6 +82,13 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.10.0")
 
 
+    //scroll infinito pagination
+    // https://mvnrepository.com/artifact/androidx.paging/paging-runtime
+    implementation("androidx.paging:paging-runtime:3.3.0")
+    // https://mvnrepository.com/artifact/androidx.paging/paging-compose
+    implementation("androidx.paging:paging-compose:3.3.0")
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

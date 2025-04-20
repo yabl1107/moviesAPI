@@ -1,12 +1,10 @@
 package com.myself.moviesappapi.model
 
-data class GamesModel(
+data class MoviesModel(
+    val page : Int,
     val total_pages: Int,
     val total_results: Int,
-    val next: String,
-    val previous: String,
     val results: List<MovieList>
-
 )
 
 data class MovieList(

@@ -1,6 +1,7 @@
 package com.myself.moviesappapi.views
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -32,8 +33,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import androidx.paging.LoadState
+import androidx.paging.compose.collectAsLazyPagingItems
 import coil.compose.AsyncImage
 import com.myself.moviesappapi.R
+import com.myself.moviesappapi.components.Loader
 import com.myself.moviesappapi.components.MovieCard
 import com.myself.moviesappapi.components.MyTopBar
 import com.myself.moviesappapi.model.MovieList
@@ -61,19 +65,46 @@ fun ContentHomeView(
     pad: PaddingValues,
     navController: NavHostController
 ) {
-    val movies by viewModel.movies.collectAsState()
+    // val movies by viewModel.movies.collectAsState()
+
+    val moviesPage = viewModel.moviePage.collectAsLazyPagingItems()
+
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .padding(pad),
         horizontalAlignment = CenterHorizontally,
     ) {
-        itemsIndexed(movies) { index, movie ->
-            Spacer(modifier = Modifier.padding(5.dp))
-            MovieCard(movie) {
-                navController.navigate("DetailView/${movie.id}")
+        items(moviesPage.itemCount) { index ->
+
+            val item = moviesPage[index]
+            if(item!= null){
+                Spacer(modifier = Modifier.padding(5.dp))
+                MovieCard(item) {
+                    navController.navigate("DetailView/${item.id}")
+                }
+                Spacer(modifier = Modifier.padding(5.dp))
             }
-            Spacer(modifier = Modifier.padding(5.dp))
+
+        }
+        when(moviesPage.loadState.append){
+            is LoadState.NotLoading -> Unit
+            LoadState.Loading -> {
+                item{
+                    Column(
+                        modifier = Modifier.fillParentMaxSize(),
+                        horizontalAlignment = CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ){
+                        Loader()
+                    }
+                }
+            }
+            is LoadState.Error -> {
+                item{
+                    Text(text = "Error")
+                }
+            }
         }
     }
 }
